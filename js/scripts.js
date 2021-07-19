@@ -5,15 +5,15 @@ const computerPlay = () => {
 
     switch (n) {
         case 0:
-            console.log(`rock`);
+            // console.log(`rock`);
             return `rock`;
             break;
         case 1:
-            console.log(`paper`);
+            // console.log(`paper`);
             return `paper`;
             break;
         case 2:
-            console.log(`scissors`);
+            // console.log(`scissors`);
             return `scissors`;
             break;
         default:
@@ -21,27 +21,30 @@ const computerPlay = () => {
     }
 }
 
-
-computerPlay();
-computerPlay();
-computerPlay();
-computerPlay();
-computerPlay();
-
-
+let userChoice = prompt(`Rock, paper, or scissors?`).toLowerCase();
 
 const playRound = (playerSelection, computerSelection) => {
 
-    playerSelection = `rOCk`.toLowerCase();
+    playerSelection = userChoice;
     // console.log(playerSelection);
-
     computerSelection = computerPlay();
 
+    /*
     if (computerSelection === playerSelection) {
-        console.log(`Tie!`);
+        return `Tie!`;
     } else {
-        console.log(`Placeholder`);
+        return `Computer wins!`;
+    }
+    */
+}
+
+
+const game = () => {
+
+    for (let i = 1; i <= 9; i++) {
+        console.log(`${i}: Computer: ${computerPlay()}, Player: ${userChoice}`);
+
     }
 }
 
-playRound();
+game();
