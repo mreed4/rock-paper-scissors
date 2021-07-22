@@ -3,48 +3,21 @@ const computerPlay = () => {
     let n = Math.floor(Math.random() * 3);
     // console.log(compHand);
 
-    switch (n) {
+    switch(n) {
         case 0:
-            // console.log(`rock`);
             return `rock`;
             break;
         case 1:
-            // console.log(`paper`);
             return `paper`;
             break;
         case 2:
-            // console.log(`scissors`);
             return `scissors`;
             break;
         default:
-            return `Oopsie!`;
+            return null;
     }
 }
 
-let userChoice = prompt(`Rock, paper, or scissors?`).toLowerCase();
-
-const playRound = (playerSelection, computerSelection) => {
-
-    playerSelection = userChoice;
-    // console.log(playerSelection);
-    computerSelection = computerPlay();
-
-    /*
-    if (computerSelection === playerSelection) {
-        return `Tie!`;
-    } else {
-        return `Computer wins!`;
-    }
-    */
+for (let i = 1; i <= 10; i++) {
+    console.log(`${i}: ${computerPlay()}`);
 }
-
-
-const game = () => {
-
-    for (let i = 1; i <= 9; i++) {
-        console.log(`${i}: Computer: ${computerPlay()}, Player: ${userChoice}`);
-
-    }
-}
-
-game();
