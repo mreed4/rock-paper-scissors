@@ -1,0 +1,19 @@
+:root {
+    /**/
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&display=swap');
+
+/**/
+
+body {
+    background-color: #222831;
+    user-select: none;
+}
+
+h1 {
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: normal;
+    color: #eee;
+}

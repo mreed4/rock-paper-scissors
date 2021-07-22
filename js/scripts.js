@@ -1,9 +1,14 @@
+/**/
+
+// Get computer choice
 const computerPlay = () => {
 
+    // Get a randomized number from 0-2 inclusive
     let n = Math.floor(Math.random() * 3);
     // console.log(compHand);
 
-    switch(n) {
+    // Return a value (a 'hand') associated with that randomized number
+    switch (n) {
         case 0:
             return `rock`;
             break;
@@ -18,6 +23,18 @@ const computerPlay = () => {
     }
 }
 
-for (let i = 1; i <= 10; i++) {
-    console.log(`${i}: ${computerPlay()}`);
+const playRound = (playerSelection, computerSelection) => {
+
 }
+
+const testGame = iterate => {
+
+    console.log(`Computer will chose hand ${iterate} times`);
+
+    for (let i = 1; i <= iterate; i++) {
+        console.log(`${i}: Computer chooses ${computerPlay()}`);
+    }
+
+}
+
+testGame(5);
