@@ -1,6 +1,7 @@
 /**/
 
 
+
 // Get computer choice
 const getComputerHand = () => {
 
@@ -20,6 +21,7 @@ const getComputerHand = () => {
             return null;
     }
 }
+
 
 
 // Get player choice
@@ -54,6 +56,7 @@ const consoleStyleWin = `color: green`;
 const consoleStyleContext = `color: #444; font-style: italic;`;
 const consoleStylePerfect = `background-color: green; color: black;`;
 const consoleStyleTie = `color: yellow;`;
+
 
 
 // Play a round
@@ -112,6 +115,10 @@ const playGame = n => {
 
 
 // Declare winner after all rounds played
+/*
+    To-do
+    - Clean this up
+*/
 const gameResults = () => {
 
     if (computerWins === playerWins) {
