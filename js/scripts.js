@@ -81,19 +81,19 @@ const playRound = (playerHand, computerHand) => {
 
     // Declare who wins round
     if (computerHand === playerHand) {
-        tie++;
+        tie++; // Increase ties by one
         return outcomeMessageTie;
     } else if (computerHand === `paper` && playerHand === `rock`) {
-        computerWins++;
+        computerWins++; // Increase computer score by one
         return outcomeMessageLoss;
     } else if (computerHand === `rock` && playerHand === `scissors`) {
-        computerWins++;
+        computerWins++; // Increase computer score by one
         return outcomeMessageLoss;
     } else if (computerHand === `scissors` && playerHand === `paper`) {
-        computerWins++;
+        computerWins++; // Increase computer score by one
         return outcomeMessageLoss;
     } else {
-        playerWins++;
+        playerWins++; // Increase player score by one
         return outcomeMessageWin;
     }
 }
@@ -141,4 +141,4 @@ const gameResults = () => {
 
 // Call function
 
-playGame(handsToPlay);
+playGame(handsToPlay); // => 3

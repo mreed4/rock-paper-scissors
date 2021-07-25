@@ -1,5 +1,6 @@
 :root {
-    /**/
+    --off-black: #222831;
+    --off-white: #eee;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&display=swap');
@@ -7,7 +8,7 @@
 /**/
 
 body {
-    background-color: #222831;
+    background-color: var(--off-black);
     user-select: none;
 }
 
@@ -15,6 +16,12 @@ h1 {
     font-family: 'Roboto Mono', monospace;
     font-style: normal;
     font-weight: normal;
-    color: #eee;
+    color: var(--off-white);
     text-align: center;
+}
+
+.underline {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: .1em;
 }
