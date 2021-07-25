@@ -43,6 +43,11 @@ const getPlayerHand = () => {
 
 
 
+// Set amount of times game played
+const handsToPlay = 3;
+
+
+
 // Initialize scores
 let computerWins = 0;
 let playerWins = 0;
@@ -71,8 +76,8 @@ const playRound = (playerHand, computerHand) => {
     let outcomeMessageTie = `Tie [${playerHand} is the same as ${computerHand}]`;
 
     // Log choices each round
-    console.log(`You chose ${playerHand}`);
     console.log(`Computer chose ${computerHand}`);
+    console.log(`You chose ${playerHand}`);
 
     // Declare who wins round
     if (computerHand === playerHand) {
@@ -123,7 +128,7 @@ const gameResults = () => {
 
     if (computerWins === playerWins) {
         console.log(`%cTied game! %c[${computerWins} to ${playerWins} (${tie} ties)]`, consoleStyleTie, consoleStyleContext);
-    } else if (playerWins === n) {
+    } else if (playerWins === handsToPlay) {
         console.log(`%cPerfect game!`, consoleStylePerfect);
     } else if (computerWins > playerWins) {
         console.log(`%cComputer wins the game! %c[${computerWins} to ${playerWins} (${tie} ties)]`, consoleStyleLoss, consoleStyleContext);
@@ -136,4 +141,4 @@ const gameResults = () => {
 
 // Call function
 
-playGame(3);
+playGame(handsToPlay);
