@@ -1,6 +1,7 @@
 :root {
     --off-black: #222831;
     --off-white: #eee;
+    --gray-one: #393E46;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&display=swap');
@@ -8,6 +9,7 @@
 /**/
 
 body {
+    padding-top: 3em;
     background-color: var(--off-black);
     user-select: none;
 }
@@ -21,7 +23,5 @@ h1 {
 }
 
 .underline {
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: .1em;
+    text-decoration: underline wavy var(--gray-one) 2px;
 }

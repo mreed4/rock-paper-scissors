@@ -58,17 +58,18 @@ let tie = 0;
 // Set console styling
 const consoleStyleLoss = `color: red;`;
 const consoleStyleWin = `color: green`;
-const consoleStyleContext = `color: #444; font-style: italic;`;
 const consoleStylePerfect = `background-color: green; color: black;`;
 const consoleStyleTie = `color: yellow;`;
+const consoleStyleContext = `color: #444; font-style: italic;`;
+const consoleStyleTitle = `font-size: 1.2em; color: white; text-decoration: underline;`;
 
 
 
 // Play a round
 const playRound = (playerHand, computerHand) => {
 
-    playerHand = getPlayerHand();
-    computerHand = getComputerHand();
+    playerHand = getPlayerHand(); // Get result from computer function
+    computerHand = getComputerHand(); // Get result form player function
 
     // Set win/loss/tie messages
     let outcomeMessageLoss = `You lose this round! [${computerHand} beats ${playerHand}]`;
@@ -80,6 +81,10 @@ const playRound = (playerHand, computerHand) => {
     console.log(`You chose ${playerHand}`);
 
     // Declare who wins round
+    /*
+        Notes
+        - The logic here can probably be improved greatly
+    */
     if (computerHand === playerHand) {
         tie++; // Increase ties by one
         return outcomeMessageTie;
@@ -104,7 +109,7 @@ const playRound = (playerHand, computerHand) => {
 const playGame = n => {
 
     // Log how many rounds game will be played
-    console.log(`rockPaperScissors.js`)
+    console.log(`%crockPaperScissors.js`, consoleStyleTitle)
     console.log(`%cPlaying game ${n} ${(n === 1) ? 'time' : 'times'}`, consoleStyleContext);
 
     for (let i = 1; i <= n; i++) {
