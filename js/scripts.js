@@ -72,7 +72,7 @@ const consoleStyleWin = `color: green`;
 const consoleStylePerfect = `background-color: green; color: black;`;
 const consoleStyleTie = `color: yellow;`;
 const consoleStyleContext = `color: #444; font-style: italic;`;
-const consoleStyleTitle = `font-size: 1.2em; color: white; text-decoration: underline;`;
+const consoleStyleTitle = `color: white; text-decoration: underline;`;
 
 
 
@@ -158,4 +158,4 @@ const gameResults = () => {
 
 // Call function
 
-playGame(handsToPlay); // => 3
+// playGame(handsToPlay); // => 3
