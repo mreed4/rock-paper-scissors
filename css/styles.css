@@ -20,7 +20,6 @@ body {
 }
 
 main {
-    /* background-color: red;*/
     width: 500px;
     margin: 3em auto;
     padding-bottom: 1em;
@@ -92,4 +91,12 @@ code {
 
 .line-thru {
     text-decoration: line-through;
+}
+
+
+/**/
+
+#content {
+    width: 80%;
+    margin: 0 auto;
 }
