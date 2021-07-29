@@ -6,13 +6,20 @@
     --off-black: #222831;
     --off-white: #eee;
     --gray-one: #393E46;
-    --yellow: #FFD369;
+    --yellow: hsl(42.4, 100%, 70.6%);
+    --green: hsl(141.5, 39.1%, 47.6%);
+    --lightGreen: hsl(141.5, 39.1%, 50%);
+    --darkGreen: hsl(141.5, 39.1%, 20%);
+    --redOrange: hsl(7.2, 89.7%, 62%);
+    --lightRedOrange: hsl(7.2, 89.7%, 65%);
+    --darkRedOrange: hsl(7.2, 89.7%, 20%);
 }
 
 
 /**/
 
 body {
+    font-family: 'Montserrat', sans-serif;
     background-color: var(--off-black);
     user-select: none;
     text-align: center;
@@ -34,11 +41,22 @@ h1 {
     color: var(--off-white);
 }
 
+a {
+    color: inherit;
+    text-decoration-color: var(--gray-one);
+    text-decoration-thickness: 2px;
+    transition: color 150ms;
+}
+
+a:hover {
+    color: var(--yellow);
+    transition: color 250ms;
+}
+
 p,
 ol,
 li {
     color: var(--off-white);
-    font-family: 'Montserrat', sans-serif;
     text-align: left;
 }
 
@@ -58,16 +76,13 @@ input[type=button] {
     margin-top: 3em;
     border-width: 1px;
     border-bottom-width: 4px;
-    background-color: #ccc;
-    color: var(--gray-one);
-    border-color: #ccc;
-    border-bottom-color: #999;
     padding: 9px 15px;
     border-radius: 6px;
     cursor: pointer;
+    font-size: 1.25em;
 }
 
-input[type=button]:hover {
+input[type=button]:active {
     border-bottom-width: 2px;
     transform: translateY(2px);
 }
@@ -98,8 +113,26 @@ code {
     margin: 0 9px;
 }
 
-.em:hover {
-    transform: scale(1.01);
+.button-red {
+    background-color: var(--redOrange);
+    color: var(--darkRedOrange);
+    border-color: var(--redOrange);
+    border-bottom-color: var(--darkRedOrange);
+}
+
+.button-green {
+    background-color: var(--green);
+    color: var(--darkGreen);
+    border-color: var(--green);
+    border-bottom-color: var(--darkGreen);
+}
+
+.button-green:hover {
+    background-color: var(--lightGreen);
+}
+
+.button-red:hover {
+    background-color: var(--lightRedOrange);
 }
 
 
@@ -107,5 +140,5 @@ code {
 
 #content {
     width: 80%;
-    margin: 0 auto;
+    margin: 3em auto 0;
 }
