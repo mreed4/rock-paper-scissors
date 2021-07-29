@@ -108,6 +108,11 @@ code {
     text-decoration: line-through;
 }
 
+.li-optional {
+    color: var(--gray-one);
+    font-style: italic;
+}
+
 .em {
     /* Custom emojis */
     margin: 0 9px;
