@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway:wght@100&family=Roboto+Mono:wght@100&display=swap');
+
+/**/
+
 :root {
     --off-black: #222831;
     --off-white: #eee;
@@ -5,29 +9,42 @@
     --yellow: #FFD369;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway:wght@100&family=Roboto+Mono:wght@100&display=swap');
 
 /**/
 
 body {
-    padding-top: 3em;
     background-color: var(--off-black);
     user-select: none;
     text-align: center;
     font-size: 1em;
 }
 
+main {
+    /* background-color: red;*/
+    width: 500px;
+    margin: 3em auto;
+    padding-bottom: 1em;
+}
+
 h1 {
     font-family: 'Raleway', sans-serif;
     font-style: normal;
+    font-size: 3.25em;
+    line-height: 1;
     font-weight: 100;
     color: var(--off-white);
 }
 
-p {
+p,
+ol,
+li {
     color: var(--off-white);
-    font-size: 1.25em;
     font-family: 'Montserrat', sans-serif;
+    text-align: left;
+}
+
+li {
+    margin-top: .5em;
 }
 
 hr {
@@ -41,27 +58,38 @@ input[type=button] {
     border-style: solid;
     margin-top: 3em;
     border-width: 1px;
-    background-color: transparent;
-    color: var(--off-white);
-    border-color: var(--gray-one);
+    border-bottom-width: 4px;
+    background-color: #ccc;
+    color: var(--gray-one);
+    border-color: #ccc;
+    border-bottom-color: #999;
     padding: 9px 15px;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 150ms, color 100ms, border-color 50ms, border-radius 1000ms;
 }
 
 input[type=button]:hover {
-    background-color: var(--yellow);
-    color: var(--off-black);
-    border-color: var(--yellow);
-    border-radius: 60px;
-    transition: background-color 150ms, color 100ms, border-color 50ms, border-radius 1000ms;
+    border-bottom-width: 2px;
+    transform: translateY(2px);
 }
 
 code {
     font-family: 'Roboto Mono', monospace;
     background-color: var(--gray-one);
     padding: 3px 6px;
-    font-size: .6em;
-    border-radius: 2px;
+    margin: 0 2px;
+    font-size: .75em;
+    border-radius: 4px;
+    font-weight: bolder;
+}
+
+
+/**/
+
+.smaller {
+    font-size: 2.5em;
+}
+
+.line-thru {
+    text-decoration: line-through;
 }

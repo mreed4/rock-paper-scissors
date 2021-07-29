@@ -45,6 +45,7 @@ const getPlayerHand = () => {
     // Prompt
     const hand = prompt(`rock, paper, or scissors?`).toLowerCase();
 
+    // Validation - this needs to be worked on
     if (hand === `rock` || hand === `paper` || hand === `scissors`) {
         return hand;
     } else {
@@ -60,8 +61,8 @@ const handsToPlay = 3;
 
 
 // Initialize scores
-let computerWins = 0;
-let playerWins = 0;
+let computerScore = 0;
+let playerScore = 0;
 let tie = 0;
 
 
@@ -70,7 +71,7 @@ let tie = 0;
 const consoleStyleLoss = `color: red;`;
 const consoleStyleWin = `color: green`;
 const consoleStylePerfect = `background-color: green; color: black;`;
-const consoleStyleTie = `color: yellow;`;
+const consoleStyleTie = `color: gold;`;
 const consoleStyleContext = `color: #444; font-style: italic;`;
 const consoleStyleTitle = `color: white; text-decoration: underline;`;
 
@@ -80,16 +81,16 @@ const consoleStyleTitle = `color: white; text-decoration: underline;`;
 const playRound = (playerHand, computerHand) => {
 
     playerHand = getPlayerHand(); // Get result from computer function
-    computerHand = getComputerHand(); // Get result form player function
+    computerHand = getComputerHand(); // Get result from player function
 
     // Set win/loss/tie messages
-    let outcomeMessageLoss = `You lose this round! [${computerHand} beats ${playerHand}]`;
-    let outcomeMessageWin = `You win this round! [${playerHand} beats ${computerHand}]`;
-    let outcomeMessageTie = `Tie [${playerHand} is the same as ${computerHand}]`;
+    const outcomeMessageLoss = `You lose this round!`;
+    const outcomeMessageWin = `You win this round!`;
+    const outcomeMessageTie = `Round tied!`;
 
     // Log choices each round
-    console.log(`Computer chose ${computerHand}`);
-    console.log(`You chose ${playerHand}`);
+    // console.log(`Computer chose ${computerHand}`);
+    // console.log(`You chose ${playerHand}`);
 
     // Declare who wins round
     /*
@@ -100,37 +101,39 @@ const playRound = (playerHand, computerHand) => {
         tie++; // Increase ties by one
         return outcomeMessageTie;
     } else if (computerHand === `paper` && playerHand === `rock`) {
-        computerWins++; // Increase computer score by one
+        computerScore++; // Increase computer score by one
         return outcomeMessageLoss;
     } else if (computerHand === `rock` && playerHand === `scissors`) {
-        computerWins++; // Increase computer score by one
+        computerScore++; // Increase computer score by one
         return outcomeMessageLoss;
     } else if (computerHand === `scissors` && playerHand === `paper`) {
-        computerWins++; // Increase computer score by one
+        computerScore++; // Increase computer score by one
         return outcomeMessageLoss;
     } else {
-        playerWins++; // Increase player score by one
+        playerScore++; // Increase player score by one
         return outcomeMessageWin;
     }
 }
 
 
 
-// Play game n rounds, log score at time of each iteration
+// Play game n rounds, log score at time of each round
 const playGame = n => {
 
     // Log how many rounds game will be played
     console.log(`%crockPaperScissors.js`, consoleStyleTitle)
-    console.log(`%cPlaying game ${n} ${(n === 1) ? 'time' : 'times'}`, consoleStyleContext);
+    console.log(`%cPlaying game ${n} ${(n === 1) ? 'time' : 'times'}`,
+        consoleStyleContext);
 
     // Play though n times
     for (let i = 1; i <= n; i++) {
-        console.log(`Game ${i}: ${playRound()}`);
-        console.log(`%cCurrent score: ${computerWins} to ${playerWins} (${tie} ties)`, consoleStyleContext)
+        console.log(`Round ${i}: ${playRound()}`);
+        console.info(`%cCurrent score: ${computerScore} to ${playerScore} (${tie} ties)`, consoleStyleContext)
     }
 
     // Call function that logs who won the game (the set of rounds)
     gameResults();
+    resetGame();
 
 }
 
@@ -143,15 +146,42 @@ const playGame = n => {
 */
 const gameResults = () => {
 
-    if (computerWins === playerWins) {
-        console.log(`%cTied game! %c[${computerWins} to ${playerWins} (${tie} ties)]`, consoleStyleTie, consoleStyleContext);
-    } else if (playerWins === handsToPlay) {
+    if (computerScore === playerScore) {
+        console.log(`%cTied game! %c[${computerScore} to ${playerScore} (${tie} ties)]`, consoleStyleTie, consoleStyleContext);
+    } else if (playerScore === handsToPlay) {
         console.log(`%cPerfect game!`, consoleStylePerfect);
-    } else if (computerWins > playerWins) {
-        console.log(`%cComputer wins the game! %c[${computerWins} to ${playerWins} (${tie} ties)]`, consoleStyleLoss, consoleStyleContext);
+    } else if (computerScore > playerScore) {
+        console.log(`%cComputer wins the game! %c[${computerScore} to ${playerScore} (${tie} ties)]`, consoleStyleLoss, consoleStyleContext);
     } else {
-        console.log(`%cPlayer wins the game! %c[${playerWins} to ${computerWins} (${tie} ties)]`, consoleStyleWin, consoleStyleContext);
+        console.log(`%cPlayer wins the game! %c[${playerScore} to ${computerScore} (${tie} ties)]`, consoleStyleWin, consoleStyleContext);
     }
+}
+
+
+
+// Reset game (and scores) after p seconds
+const resetGame = () => {
+
+    // Reset scores
+    computerScore = 0;
+    playerScore = 0;
+    tie = 0;
+
+    const p = 3; // Amount of second that pass
+
+    // Log what is happening, what will happen
+    console.warn(`Resetting scores`);
+    console.warn(`Clearing console in ${p} seconds`);
+
+    // Clear log in p seconds
+    setTimeout(clearConsole, (p * 1000));
+}
+
+
+
+// This clears the console
+const clearConsole = () => {
+    console.clear();
 }
 
 
