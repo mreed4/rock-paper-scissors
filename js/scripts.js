@@ -174,7 +174,7 @@ const resetGame = () => {
     console.warn(`Resetting scores`);
     console.warn(`Clearing console in ${p} seconds`);
 
-    // Clear log in p seconds
+    // Clear console in p seconds
     setTimeout(clearConsole, (p * 1000));
 }
 
