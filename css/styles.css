@@ -86,11 +86,20 @@ code {
 /**/
 
 .smaller {
-    font-size: 2.5em;
+    font-size: 2.25em;
 }
 
 .line-thru {
     text-decoration: line-through;
+}
+
+.em {
+    /* Custom emojis */
+    margin: 0 9px;
+}
+
+.em:hover {
+    transform: scale(1.01);
 }
 
 
