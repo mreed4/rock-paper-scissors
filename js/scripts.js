@@ -2,13 +2,14 @@
 rockPaperScissors.js
 https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/rock-paper-scissors
 
-We’re going to make a simple implementation of grade-school classic “rock paper scissors”. 
-If you don’t know what that is check the Wikipedia article or this ridiculous step-by-step. 
-For the moment we’re just going to play the game from the browser console, but we will 
-revisit this project in a later lesson and add a Graphical User Interface with buttons and 
-text, so don’t forget to keep the code on GitHub! You might notice some ‘Live Preview’ 
-links in the student solutions that have a GUI - this is coming in a later lesson. When you 
-get there don’t forget to come back and add your link!
+We’re going to make a simple implementation of grade-school classic “rock paper 
+scissors”. If you don’t know what that is check the Wikipedia article or this 
+ridiculous step-by-step. For the moment we’re just going to play the game from the 
+browser console, but we will revisit this project in a later lesson and add a 
+Graphical User Interface with buttons and text, so don’t forget to keep the code 
+on GitHub! You might notice some ‘Live Preview’ links in the student solutions that 
+have a GUI - this is coming in a later lesson. When you get there don’t forget to 
+come back and add your link!
 */
 
 
@@ -122,7 +123,7 @@ const playGame = n => {
 
     // Log how many rounds game will be played
     console.log(`%crockPaperScissors.js`, consoleStyleTitle)
-    console.log(`%cPlaying game ${n} ${(n === 1) ? 'time' : 'times'}`,
+    console.info(`%cPlaying game ${n} ${(n === 1) ? 'time' : 'times'}`,
         consoleStyleContext);
 
     // Play though n times
@@ -167,7 +168,7 @@ const resetGame = () => {
     playerScore = 0;
     tie = 0;
 
-    const p = 3; // Amount of second that pass
+    const p = 6; // Amount of seconds that pass
 
     // Log what is happening, what will happen
     console.warn(`Resetting scores`);
@@ -183,9 +184,3 @@ const resetGame = () => {
 const clearConsole = () => {
     console.clear();
 }
-
-
-
-// Call function
-
-// playGame(handsToPlay); // => 3
