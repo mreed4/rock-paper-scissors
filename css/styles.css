@@ -73,7 +73,7 @@ hr {
 
 input[type=button] {
     border-style: solid;
-    margin-top: 3em;
+    margin: 3em 0.5em 0;
     border-width: 1px;
     border-bottom-width: 4px;
     padding: 9px 15px;
