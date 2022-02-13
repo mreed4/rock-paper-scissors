@@ -28,3 +28,7 @@ const getComputerHand = () => {
             return null;
     }
 }
+
+const getPlayerHand = () => {
+
+}

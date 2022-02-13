@@ -23,7 +23,7 @@ body {
     background-color: var(--off-black);
     user-select: none;
     text-align: center;
-    font-size: 1em;
+    font-size: 1rem;
 }
 
 main {
@@ -32,13 +32,22 @@ main {
     padding-bottom: 1em;
 }
 
-h1 {
+h1,
+h2,
+h3 {
     font-family: 'Raleway', sans-serif;
     font-style: normal;
-    font-size: 3.25em;
     line-height: 1;
     font-weight: 100;
     color: var(--off-white);
+}
+
+h1 {
+    font-size: 3.25rem;
+}
+
+h2 {
+    font-size: 1.75rem;
 }
 
 a {
@@ -115,7 +124,16 @@ code {
 
 .em {
     /* Custom emojis */
-    margin: 0 9px;
+    margin: 0 18px;
+}
+
+.player-choice {
+    cursor: pointer;
+    transition: all .07s ease;
+}
+
+.player-choice:hover {
+    transform: scale(1.1);
 }
 
 .button-red {
