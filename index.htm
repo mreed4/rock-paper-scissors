@@ -21,38 +21,43 @@
     <main>
       <section id="description">
         <p>
-          In this game you click on the below emojis. This is the classic rock paper scissors game. There are
+          This is the classic rock paper scissors game&mdash;just click on the below emojis. While you may win a round or two, the player
+          with the most wins is winner of the overall game. There are
           <span id="total-rounds">0</span> total rounds in each game.
         </p>
       </section>
       <section id="hands">
         <div id="player-hand">
-          <h2>Player Choice</h2>
+          <h2>Player Hand</h2>
           <hr class="hr-small" />
           <i class="em larger em-gem player-choice"></i>
           <i class="em larger em-newspaper player-choice"></i>
           <i class="em larger em-scissors player-choice"></i>
         </div>
         <div id="computer-hand">
-          <h2>Computer Choice</h2>
+          <h2>Computer Hand</h2>
           <hr class="hr-small" />
           <div id="computer-choice">
             <i class="em larger em-question"></i>
             <!-- 
-                  This will randomize the computer choice
+                  To-do: This will randomize the computer choice
                   It will appear to change very quickly
                 -->
           </div>
         </div>
       </section>
       <section id="results">
-        <div class="stats">Games left: <span id="rounds-left"></span></div>
-        <div class="stats">Player wins: <span id="player-wins">0</span></div>
-        <div class="stats">Computer wins: <span id="computer-wins">0</span></div>
-        <div class="stats">Draws: <span id="draws">0</span></div>
+        <div id="round-outcome">Results of each round will show up here</div>
+        <div id="versus">Each hand will show up here</div>
+        <div>
+          <div class="stats">Rounds left<span id="rounds-left"></span></div>
+          <div class="stats">Player wins<span id="player-wins">0</span></div>
+          <div class="stats">Computer wins<span id="computer-wins">0</span></div>
+          <div class="stats">Draws<span id="draws">0</span></div>
+        </div>
       </section>
-      <section id="reset">
-        <input class="button-red" type="button" onclick="resetGame();" value="Reset" />
+      <section id="buttons">
+        <input class="button-red" type="button" id="btn-reset" value="Reset" />
       </section>
     </main>
   </body>

@@ -41,7 +41,7 @@ main {
 }
 
 section {
-  margin: 6em 0 0;
+  margin: 3em 0 0;
 }
 
 section#hands {
@@ -49,9 +49,11 @@ section#hands {
   justify-content: space-between;
 }
 
-section#results {
+section#results > div:nth-child(3) {
   display: flex;
   justify-content: space-evenly;
+  color: var(--off-white);
+  font-size: 125%;
 }
 
 h1,
@@ -93,7 +95,7 @@ p {
 hr {
   height: 2px;
   background-color: var(--gray-one);
-  margin: 0 auto 1em;
+  margin: 1em auto;
 }
 
 hr.hr-large {
@@ -160,4 +162,16 @@ input[type="button"]:active {
 
 .stats > span {
   display: block;
+  font-size: 200%;
+  margin-top: 0.25em;
+}
+
+#round-outcome {
+  margin: 2em auto 0;
+  font-size: 150%;
+  color: var(--yellow);
+}
+
+#versus {
+  margin: 1em auto 6em;
 }
