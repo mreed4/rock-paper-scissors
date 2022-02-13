@@ -20,18 +20,24 @@
     </header>
     <main>
       <section id="description">
-        <p>In this game you click on the below emojis. This is the classic rock paper scissors game.</p>
+        <p>
+          In this game you click on the below emojis. This is the classic rock paper scissors game. There are
+          <span id="total-rounds">0</span> total rounds in each game.
+        </p>
       </section>
       <section id="hands">
         <div id="player-hand">
           <h2>Player Choice</h2>
-          <i class="em em-gem player-choice"></i>
-          <i class="em em-newspaper player-choice"></i>
-          <i class="em em-scissors player-choice"></i>
+          <hr class="hr-small" />
+          <i class="em larger em-gem player-choice"></i>
+          <i class="em larger em-newspaper player-choice"></i>
+          <i class="em larger em-scissors player-choice"></i>
         </div>
         <div id="computer-hand">
           <h2>Computer Choice</h2>
+          <hr class="hr-small" />
           <div id="computer-choice">
+            <i class="em larger em-question"></i>
             <!-- 
                   This will randomize the computer choice
                   It will appear to change very quickly
@@ -40,10 +46,10 @@
         </div>
       </section>
       <section id="results">
-        <div class="stats">Games left: <span id="games-left"></span></div>
-        <div class="stats">Player wins: <span id="player-wins"></span></div>
-        <div class="stats">Computer wins: <span id="computer-wins"></span></div>
-        <div class="stats">Draws: <span id="draws"></span></div>
+        <div class="stats">Games left: <span id="rounds-left"></span></div>
+        <div class="stats">Player wins: <span id="player-wins">0</span></div>
+        <div class="stats">Computer wins: <span id="computer-wins">0</span></div>
+        <div class="stats">Draws: <span id="draws">0</span></div>
       </section>
       <section id="reset">
         <input class="button-red" type="button" onclick="resetGame();" value="Reset" />

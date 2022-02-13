@@ -17,12 +17,17 @@
 
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: 0;
 }
 
 /**/
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  line-height: 1;
   background-color: var(--off-black);
   user-select: none;
   text-align: center;
@@ -32,11 +37,11 @@ body {
 header,
 main {
   width: 700px;
-  margin: 3em auto;
+  margin: 0 auto;
 }
 
 section {
-  margin-bottom: 6em;
+  margin: 6em 0 0;
 }
 
 section#hands {
@@ -52,19 +57,18 @@ section#results {
 h1,
 h2,
 h3 {
-  font-family: "Raleway", sans-serif;
-  font-style: normal;
-  line-height: 1;
-  font-weight: 100;
   color: var(--off-white);
+  font-weight: 100;
+  margin-bottom: 0.25em;
 }
 
 h1 {
   font-size: 325%;
+  margin-top: 1em;
 }
 
 h2 {
-  font-size: 175%;
+  font-size: 200%;
 }
 
 a {
@@ -81,13 +85,15 @@ a:hover {
 
 p {
   color: var(--off-white);
-  text-align: left;
+  text-align: center;
+  font-size: 125%;
+  line-height: 32px;
 }
 
 hr {
-  border-width: 0;
   height: 2px;
   background-color: var(--gray-one);
+  margin: 0 auto 1em;
 }
 
 hr.hr-large {
@@ -96,11 +102,12 @@ hr.hr-large {
 
 hr.hr-small {
   width: 25%;
+  margin-bottom: 2em;
 }
 
 input[type="button"] {
   border-style: solid;
-  margin: 3em 0.5em 0;
+  margin: 0 auto;
   border-width: 1px;
   border-bottom-width: 4px;
   padding: 9px 15px;
@@ -116,19 +123,28 @@ input[type="button"]:active {
 
 /**/
 
-.em {
+#description p > span {
+  color: var(--yellow);
+  font-weight: 600;
+}
+
+.em.larger {
   /* Custom emojis */
   margin: 0 0.5em;
   font-size: 300%;
 }
 
+.em-question {
+  filter: saturate(0) contrast(0) brightness(1.5);
+}
+
 .player-choice {
   cursor: pointer;
-  transition: all 0.07s ease;
+  transition: transform 150ms ease;
 }
 
 .player-choice:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .button-red {
@@ -140,4 +156,8 @@ input[type="button"]:active {
 
 .button-red:hover {
   background-color: var(--lightRedOrange);
+}
+
+.stats > span {
+  display: block;
 }

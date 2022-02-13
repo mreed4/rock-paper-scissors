@@ -12,39 +12,44 @@ have a GUI - this is coming in a later lesson. When you get there don’t forget
 come back and add your link!
 */
 
+// Set all DOM elements
+
+let domTotalRounds = document.querySelector("#total-rounds");
+let domRoundsToPlay = document.querySelector("#rounds-left");
+let domPlayerWins = document.querySelector("#player-wins");
+let domComputerWins = document.querySelector("#computer-wins");
+let domDraws = document.querySelector("#draws");
+let domPlayerRock = document.querySelector(".em-gem");
+let domPlayerPaper = document.querySelector(".em-newspaper");
+let domPlayerScissors = document.querySelector(".em-scissors");
+
+// Set amount of times game played
+let handsToPlay = 9;
+domRoundsToPlay.textContent = String(handsToPlay);
+domTotalRounds.textContent = String(handsToPlay);
+
+// Initialize scores
+let computerScore = 0;
+let playerScore = 0;
+let tie = 0;
+
 // Get computer choice
 const getComputerHand = () => {
-  // Get a randomized number from 0-2 inclusive
   let n = Math.floor(Math.random() * 3);
-  // console.log(compHand);
-
-  // Return a value (a 'hand') associated with that randomized number
   switch (n) {
     case 0:
-      return `rock`;
+      return "rock";
     case 1:
-      return `paper`;
+      return "paper";
     case 2:
-      return `scissors`;
+      return "scissors";
     default:
       return null;
   }
 };
 
 // Get player choice
-/*
-      To-do
-      - Validate inputs
-  */
 const getPlayerHand = () => {};
-
-// Set amount of times game played
-const handsToPlay = 3;
-
-// Initialize scores
-let computerScore = 0;
-let playerScore = 0;
-let tie = 0;
 
 // Play a round
 const playRound = (playerHand, computerHand) => {
@@ -52,25 +57,20 @@ const playRound = (playerHand, computerHand) => {
   computerHand = getComputerHand(); // Get result from player function
 
   // Set win/loss/tie messages
-  const outcomeMessageLoss = `You lose this round!`;
-  const outcomeMessageWin = `You win this round!`;
-  const outcomeMessageTie = `Round tied!`;
+  const outcomeMessageLoss = "You lose this round!";
+  const outcomeMessageWin = "You win this round!";
+  const outcomeMessageTie = "Round tied!";
 
-  // Declare who wins round
-  /*
-          Notes
-          - The logic here can probably be improved greatly
-      */
   if (computerHand === playerHand) {
-    tie++; // Increase ties by one
+    tie++;
     return outcomeMessageTie;
-  } else if (computerHand === `paper` && playerHand === `rock`) {
+  } else if (computerHand === "paper" && playerHand === "rock") {
     computerScore++;
     return outcomeMessageLoss;
-  } else if (computerHand === `rock` && playerHand === `scissors`) {
+  } else if (computerHand === "rock" && playerHand === "scissors") {
     computerScore++;
     return outcomeMessageLoss;
-  } else if (computerHand === `scissors` && playerHand === `paper`) {
+  } else if (computerHand === "scissors" && playerHand === "paper") {
     computerScore++;
     return outcomeMessageLoss;
   } else {
@@ -81,12 +81,8 @@ const playRound = (playerHand, computerHand) => {
 
 // Play game n rounds, log score at time of each round
 const playGame = (n) => {
-  // Log how many rounds game will be played
-  console.log(`%crockPaperScissors.js`, consoleStyleTitle);
-  console.info(`%cPlaying game ${n} ${n === 1 ? "time" : "times"}`, consoleStyleContext);
-
   // Play though n times
-  for (let i = 1; i <= n; i++) {
+  for (let i = 1; i <= handsToPlay; i++) {
     console.log(`Round ${i}: ${playRound()}`);
     console.info(`%cCurrent score: ${computerScore} to ${playerScore} (${tie} ties)`, consoleStyleContext);
   }
@@ -97,10 +93,6 @@ const playGame = (n) => {
 };
 
 // Declare winner after all rounds played
-/*
-      To-do
-      - Clean this up, improve readability
-  */
 const gameResults = () => {
   if (computerScore === playerScore) {
     console.log(`%cTied game! %c[${computerScore} to ${playerScore} (${tie} ties)]`, consoleStyleTie, consoleStyleContext);
@@ -123,7 +115,7 @@ const resetGame = () => {
   const p = 6; // Amount of seconds that pass
 
   // Log what is happening, what will happen
-  console.warn(`Resetting scores`);
+  console.warn("Resetting scores");
 
   // Clear console in p seconds
   console.warn(`Clearing console in ${p} seconds`);
