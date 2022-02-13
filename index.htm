@@ -14,18 +14,21 @@
   </head>
 
   <body>
-    <main>
+    <header>
       <h1 class="">rockPaperScissors.js</h1>
       <hr />
+    </header>
+    <main>
+      <p>In this game you click on the below emojis. This is the classic rock paper scissors game.</p>
       <section id="content">
-        <div id="playerHand">
-          <p>In this game you click on the below emojis. This is the classic rock paper scissors game.</p>
+        <div id="player-hand">
           <h2>Player Choice</h2>
-          <i class="em em-gem player-choice" aria-role="presentation" aria-label="GEM STONE"></i>
-          <i class="em em-newspaper player-choice" aria-role="presentation" aria-label="NEWSPAPER"></i>
-          <i class="em em-scissors player-choice" aria-role="presentation" aria-label="BLACK SCISSORS"></i>
+          <i class="em em-gem player-choice"></i>
+          <i class="em em-newspaper player-choice"></i>
+          <i class="em em-scissors player-choice"></i>
         </div>
-        <div id="computerHand"></div>
+        <div id="computer-hand"></div>
+        <div id="results">Games left: <span id="games-left"></span></div>
         <input class="button-red" type="button" onclick="resetGame();" value="Reset" />
       </section>
     </main>
