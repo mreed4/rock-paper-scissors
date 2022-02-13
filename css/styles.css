@@ -35,8 +35,18 @@ main {
   margin: 3em auto;
 }
 
-main {
-  padding-bottom: 1em;
+section {
+  margin-bottom: 6em;
+}
+
+section#hands {
+  display: flex;
+  justify-content: space-between;
+}
+
+section#results {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 h1,
@@ -77,8 +87,15 @@ p {
 hr {
   border-width: 0;
   height: 2px;
-  width: 75%;
   background-color: var(--gray-one);
+}
+
+hr.hr-large {
+  width: 75%;
+}
+
+hr.hr-small {
+  width: 25%;
 }
 
 input[type="button"] {
@@ -101,7 +118,7 @@ input[type="button"]:active {
 
 .em {
   /* Custom emojis */
-  margin: 0 1em;
+  margin: 0 0.5em;
   font-size: 300%;
 }
 
@@ -119,17 +136,6 @@ input[type="button"]:active {
   color: var(--darkRedOrange);
   border-color: var(--redOrange);
   border-bottom-color: var(--darkRedOrange);
-}
-
-.button-green {
-  background-color: var(--green);
-  color: var(--darkGreen);
-  border-color: var(--green);
-  border-bottom-color: var(--darkGreen);
-}
-
-.button-green:hover {
-  background-color: var(--lightGreen);
 }
 
 .button-red:hover {
