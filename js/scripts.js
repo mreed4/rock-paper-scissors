@@ -41,7 +41,7 @@ let versusTest = "Each hand will show up here";
 domGameResults.style.display = "none";
 
 domRoundOutcome.textContent = roundOutcomeText;
-domRoundOutcome.style.cssText = "visibility: hidden";
+domRoundResults.style.cssText = "visibility: hidden";
 
 domVersus.textContent = versusTest;
 domVersus.style.cssText = "visibility: hidden";
@@ -148,10 +148,12 @@ const playRound = (playerHand, computerHand) => {
 const determineWinner = (tie, playerScore, computerScore, handsToPlay) => {
   if (tie + playerScore + computerScore === saveHands) {
     domHands.style.display = "none";
-    domRoundResults.style.display = "none";
     domDesc.style.display = "none";
     domGameResults.style.display = "block";
     domBtnPlayAgain.style.visibility = "visible";
+
+    domRoundResults.style.cssText = "display: none;";
+    domVersus.style.cssText = "display: none;";
   }
   if (handsToPlay === 0 && playerScore > computerScore) {
     domBody.style.backgroundColor = "var(--green)";
@@ -181,8 +183,8 @@ const playAgain = () => {
 
   domBody.style.backgroundColor = "hsla(216, 18.1%, 16.3%, 1)";
 
-  domRoundResults.style.cssText = "hidden";
-  domVersus.style.visibility = "hidden";
+  domRoundResults.style.cssText = "display: block; visibility: hidden;";
+  domVersus.style.cssText = "display: block; visibility: hidden;";
 
   domHands.style.display = "flex";
   domDesc.style.display = "block";
