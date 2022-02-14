@@ -21,8 +21,8 @@
     <main>
       <section id="description">
         <p>
-          This is the classic rock paper scissors game&mdash;just click on the below emojis. While you may win a round or two, the player
-          with the most wins is winner of the overall game. There are
+          This is the classic rock paper scissors game&mdash;just click on the below emojis. While you may win a round or two, you can only
+          win the overall game if you win the most rounds. There are
           <span id="total-rounds">0</span> total rounds in each game.
         </p>
       </section>
@@ -30,9 +30,11 @@
         <div id="player-hand">
           <h2>Player Hand</h2>
           <hr class="hr-small" />
-          <i class="em larger em-gem player-choice"></i>
-          <i class="em larger em-newspaper player-choice"></i>
-          <i class="em larger em-scissors player-choice"></i>
+          <div id="player-choices">
+            <i class="em larger em-gem player-choice"></i>
+            <i class="em larger em-newspaper player-choice"></i>
+            <i class="em larger em-scissors player-choice"></i>
+          </div>
         </div>
         <div id="computer-hand">
           <h2>Computer Hand</h2>
@@ -47,17 +49,18 @@
         </div>
       </section>
       <section id="results">
-        <div id="round-outcome">Results of each round will show up here</div>
+        <div id="round-outcome"></div>
         <div id="versus">Each hand will show up here</div>
+        <div id="game-outcome"></div>
         <div>
-          <div class="stats">Rounds left<span id="rounds-left"></span></div>
+          <div class="stats">Rounds left<span id="rounds-left">0</span></div>
           <div class="stats">Player wins<span id="player-wins">0</span></div>
           <div class="stats">Computer wins<span id="computer-wins">0</span></div>
           <div class="stats">Draws<span id="draws">0</span></div>
         </div>
       </section>
       <section id="buttons">
-        <input class="button-red" type="button" id="btn-reset" value="Reset" />
+        <input class="button-green" type="button" id="btn-again" value="Play Again" />
       </section>
     </main>
   </body>

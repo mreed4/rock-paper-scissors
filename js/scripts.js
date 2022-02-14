@@ -14,6 +14,7 @@ come back and add your link!
 
 // Set all DOM elements
 
+let domBody = document.body;
 let domTotalRounds = document.querySelector("#total-rounds");
 let domRoundsToPlay = document.querySelector("#rounds-left");
 let domPlayerWins = document.querySelector("#player-wins");
@@ -24,9 +25,25 @@ let domPlayerRock = document.querySelector(".em-gem");
 let domPlayerPaper = document.querySelector(".em-newspaper");
 let domPlayerScissors = document.querySelector(".em-scissors");
 let domVersus = document.querySelector("#versus");
+let domGameOutcome = document.querySelector("#game-outcome");
+let domPlayerChoices = document.querySelector("#player-choices");
+let domComputerChoice = document.querySelector("#computer-choice");
+let domBtnPlayAgain = document.querySelector("#btn-again");
+let domHands = document.q;
+
+let roundOutcomeText = "Results of each round will show up here";
+let gameOutcomeText = "Outcome of game will appear here";
+let versusTest = "Each hand will show up here";
+
+domRoundOutcome.textContent = roundOutcomeText;
+domGameOutcome.textContent = gameOutcomeText;
+domVersus.textContent = versusTest;
 
 // Set amount of times game played
 let handsToPlay = 9;
+let saveHands = handsToPlay;
+
+// Place the number into the DOM
 domRoundsToPlay.textContent = String(handsToPlay);
 domTotalRounds.textContent = String(handsToPlay);
 
@@ -34,8 +51,6 @@ domTotalRounds.textContent = String(handsToPlay);
 let computerScore = 0;
 let playerScore = 0;
 let tie = 0;
-
-let playerHand;
 
 // Get computer choice
 const getComputerHand = () => {
@@ -53,6 +68,7 @@ const getComputerHand = () => {
 };
 
 let computerHand = getComputerHand();
+let playerHand;
 
 domPlayerRock.addEventListener("click", () => {
   handsToPlay--;
@@ -82,7 +98,7 @@ const getPlayerHand = () => {
 
 // Play a round
 const playRound = (playerHand, computerHand) => {
-  playerHand = getPlayerHand(); // Get result from computer function
+  playerHand = getPlayerHand();
   computerHand = getComputerHand();
 
   // Set win/loss/tie messages
@@ -95,46 +111,74 @@ const playRound = (playerHand, computerHand) => {
     tie++;
     domDraws.textContent = String(tie);
     domRoundOutcome.textContent = outcomeMessageTie;
+    domRoundOutcome.style.color = "var(--yellow)";
     domVersus.textContent = String(versus);
-  } else if (computerHand === "paper" && playerHand === "rock") {
+  } else if (
+    (computerHand === "paper" && playerHand === "rock") ||
+    (computerHand === "rock" && playerHand === "scissors") ||
+    (computerHand === "scissors" && playerHand === "paper")
+  ) {
     computerScore++;
     domComputerWins.textContent = String(computerScore);
     domRoundOutcome.textContent = outcomeMessageLoss;
-    domVersus.textContent = String(versus);
-  } else if (computerHand === "rock" && playerHand === "scissors") {
-    computerScore++;
-    domComputerWins.textContent = String(computerScore);
-    domRoundOutcome.textContent = outcomeMessageLoss;
-    domVersus.textContent = String(versus);
-  } else if (computerHand === "scissors" && playerHand === "paper") {
-    computerScore++;
-    domComputerWins.textContent = String(computerScore);
-    domRoundOutcome.textContent = outcomeMessageLoss;
+    domRoundOutcome.style.color = "var(--redorange)";
     domVersus.textContent = String(versus);
   } else {
     playerScore++;
     domPlayerWins.textContent = String(playerScore);
     domRoundOutcome.textContent = outcomeMessageWin;
+    domRoundOutcome.style.color = "var(--green)";
     domVersus.textContent = String(versus);
+  }
+  determineWinner(tie, playerScore, computerScore, handsToPlay);
+};
+
+const determineWinner = (tie, playerScore, computerScore, handsToPlay) => {
+  if (tie + playerScore + computerScore === saveHands) {
+    domPlayerChoices.style.visibility = "hidden";
+    domComputerChoice.style.visibility = "hidden";
+    domBtnPlayAgain.style.visibility = "visible";
+  }
+  if (handsToPlay === 0 && playerScore > computerScore) {
+    domBody.style.backgroundColor = "var(--green)";
+    domGameOutcome.textContent = "Player wins the game!";
+    domGameOutcome.style.color = "var(--darker)";
+  } else if (handsToPlay === 0 && playerScore < computerScore) {
+    domBody.style.backgroundColor = "var(--redorange)";
+    domGameOutcome.style.color = "var(--darker)";
+    domGameOutcome.textContent = "Computer wins the game!";
+  } else if (handsToPlay === 0 && playerScore === computerScore) {
+    domBody.style.backgroundColor = "var(--yellow)";
+    domGameOutcome.style.color = "var(--darker)";
+    domGameOutcome.textContent = "Game results in draw!";
   }
 };
 
-if (playerScore > computerScore) {
-}
-
 // Reset game (and scores) after p seconds
-const resetGame = () => {
+const playAgain = () => {
   // Reset scores
   computerScore = 0;
   playerScore = 0;
   tie = 0;
+  handsToPlay = saveHands;
 
-  const p = 6; // Amount of seconds that pass
+  domPlayerWins.textContent = String(playerScore);
+  domRoundsToPlay.textContent = String(saveHands);
+  domComputerWins.textContent = String(computerScore);
+  domDraws.textContent = String(tie);
 
-  // Log what is happening, what will happen
-  console.warn("Resetting scores");
+  domBody.style.backgroundColor = "hsla(216, 18.1%, 16.3%, 1)";
 
-  // Clear console in p seconds
-  console.warn(`Clearing console in ${p} seconds`);
-  setTimeout(clearConsole, p * 1000);
+  domPlayerChoices.style.visibility = "visible";
+  domComputerChoice.style.visibility = "visible";
+
+  domGameOutcome.textContent = gameOutcomeText;
+  domGameOutcome.style.color = "var(--light)";
+
+  domRoundOutcome.textContent = roundOutcomeText;
+  domRoundOutcome.style.color = "var(--light)";
 };
+
+domBtnPlayAgain.addEventListener("click", () => {
+  playAgain();
+});
