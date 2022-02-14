@@ -29,7 +29,6 @@
       <section id="hands">
         <div id="player-hand">
           <h2>Player Hand</h2>
-          <hr class="hr-small" />
           <div id="player-choices">
             <i class="em larger em-gem player-choice"></i>
             <i class="em larger em-newspaper player-choice"></i>
@@ -38,7 +37,6 @@
         </div>
         <div id="computer-hand">
           <h2>Computer Hand</h2>
-          <hr class="hr-small" />
           <div id="computer-choice">
             <i class="em larger em-question"></i>
             <!-- 
@@ -48,16 +46,18 @@
           </div>
         </div>
       </section>
-      <section id="results">
+      <section id="results-round">
         <div id="round-outcome"></div>
-        <div id="versus">Each hand will show up here</div>
+        <div id="versus"></div>
+      </section>
+      <section id="results-game">
         <div id="game-outcome"></div>
-        <div>
-          <div class="stats">Rounds left<span id="rounds-left">0</span></div>
-          <div class="stats">Player wins<span id="player-wins">0</span></div>
-          <div class="stats">Computer wins<span id="computer-wins">0</span></div>
-          <div class="stats">Draws<span id="draws">0</span></div>
-        </div>
+      </section>
+      <section id="stats">
+        <div class="stat">Rounds left<span id="rounds-left">0</span></div>
+        <div class="stat">Player wins<span id="player-wins">0</span></div>
+        <div class="stat">Computer wins<span id="computer-wins">0</span></div>
+        <div class="stat">Draws<span id="draws">0</span></div>
       </section>
       <section id="buttons">
         <input class="button-green" type="button" id="btn-again" value="Play Again" />

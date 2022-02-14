@@ -29,15 +29,24 @@ let domGameOutcome = document.querySelector("#game-outcome");
 let domPlayerChoices = document.querySelector("#player-choices");
 let domComputerChoice = document.querySelector("#computer-choice");
 let domBtnPlayAgain = document.querySelector("#btn-again");
-let domHands = document.q;
+let domHands = document.querySelector("#hands");
+let domRoundResults = document.querySelector("#results-round");
+let domGameResults = document.querySelector("#results-game");
+let domDesc = document.querySelector("#description");
 
-let roundOutcomeText = "Results of each round will show up here";
+let roundOutcomeText = "[Results of each round will show up here]";
 let gameOutcomeText = "Outcome of game will appear here";
 let versusTest = "Each hand will show up here";
 
+domGameResults.style.display = "none";
+
 domRoundOutcome.textContent = roundOutcomeText;
-domGameOutcome.textContent = gameOutcomeText;
+domRoundOutcome.style.cssText = "visibility: hidden";
+
 domVersus.textContent = versusTest;
+domVersus.style.cssText = "visibility: hidden";
+
+domGameOutcome.textContent = gameOutcomeText;
 
 // Set amount of times game played
 let handsToPlay = 9;
@@ -105,14 +114,15 @@ const playRound = (playerHand, computerHand) => {
   let outcomeMessageLoss = "You lose this round!";
   let outcomeMessageWin = "You win this round!";
   let outcomeMessageTie = "Round tied!";
-  let versus = `You: ${playerHand} v. Computer: ${computerHand}`;
+  let versus = `${playerHand} versus ${computerHand}`;
 
   if (computerHand === playerHand) {
     tie++;
     domDraws.textContent = String(tie);
     domRoundOutcome.textContent = outcomeMessageTie;
-    domRoundOutcome.style.color = "var(--yellow)";
+    domRoundOutcome.style.cssText = "visibility:visible;color:var(--yellow)";
     domVersus.textContent = String(versus);
+    domVersus.style.visibility = "visible";
   } else if (
     (computerHand === "paper" && playerHand === "rock") ||
     (computerHand === "rock" && playerHand === "scissors") ||
@@ -121,36 +131,38 @@ const playRound = (playerHand, computerHand) => {
     computerScore++;
     domComputerWins.textContent = String(computerScore);
     domRoundOutcome.textContent = outcomeMessageLoss;
-    domRoundOutcome.style.color = "var(--redorange)";
+    domRoundOutcome.style.cssText = "visibility:visible;color:var(--redorange)";
     domVersus.textContent = String(versus);
+    domVersus.style.visibility = "visible";
   } else {
     playerScore++;
     domPlayerWins.textContent = String(playerScore);
     domRoundOutcome.textContent = outcomeMessageWin;
-    domRoundOutcome.style.color = "var(--green)";
+    domRoundOutcome.style.cssText = "visibility:visible;color:var(--green)";
     domVersus.textContent = String(versus);
+    domVersus.style.visibility = "visible";
   }
   determineWinner(tie, playerScore, computerScore, handsToPlay);
 };
 
 const determineWinner = (tie, playerScore, computerScore, handsToPlay) => {
   if (tie + playerScore + computerScore === saveHands) {
-    domPlayerChoices.style.visibility = "hidden";
-    domComputerChoice.style.visibility = "hidden";
+    domHands.style.display = "none";
+    domRoundResults.style.display = "none";
+    domDesc.style.display = "none";
+    domGameResults.style.display = "block";
     domBtnPlayAgain.style.visibility = "visible";
   }
   if (handsToPlay === 0 && playerScore > computerScore) {
     domBody.style.backgroundColor = "var(--green)";
     domGameOutcome.textContent = "Player wins the game!";
-    domGameOutcome.style.color = "var(--darker)";
   } else if (handsToPlay === 0 && playerScore < computerScore) {
     domBody.style.backgroundColor = "var(--redorange)";
-    domGameOutcome.style.color = "var(--darker)";
     domGameOutcome.textContent = "Computer wins the game!";
   } else if (handsToPlay === 0 && playerScore === computerScore) {
     domBody.style.backgroundColor = "var(--yellow)";
-    domGameOutcome.style.color = "var(--darker)";
     domGameOutcome.textContent = "Game results in draw!";
+    domGameOutcome.style.color = "var(--darker)";
   }
 };
 
@@ -169,14 +181,21 @@ const playAgain = () => {
 
   domBody.style.backgroundColor = "hsla(216, 18.1%, 16.3%, 1)";
 
-  domPlayerChoices.style.visibility = "visible";
-  domComputerChoice.style.visibility = "visible";
+  domRoundResults.style.cssText = "hidden";
+  domVersus.style.visibility = "hidden";
+
+  domHands.style.display = "flex";
+  domDesc.style.display = "block";
+  domGameResults.style.display = "none";
 
   domGameOutcome.textContent = gameOutcomeText;
-  domGameOutcome.style.color = "var(--light)";
 
   domRoundOutcome.textContent = roundOutcomeText;
   domRoundOutcome.style.color = "var(--light)";
+
+  domVersus.textContent = versusTest;
+
+  domBtnPlayAgain.style.visibility = "hidden";
 };
 
 domBtnPlayAgain.addEventListener("click", () => {
