@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Raleway:wght@100;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Raleway:wght@100;200;600&display=swap");
 /**/
 
 :root {
@@ -124,13 +124,22 @@ input[type="button"]:hover {
   transform: scale(1.2);
 }
 
-.button-green:hover {
-  background-color: var(--cg-blue-l);
-}
-
 #hands {
   display: flex;
   justify-content: space-between;
+}
+
+#round-outcome {
+  margin: 2em auto;
+  font-size: 200%;
+  font-weight: 200;
+}
+
+#game-outcome {
+  margin: 3em auto;
+  font-size: 200%;
+  font-weight: 600;
+  color: var(--darker);
 }
 
 #stats {
@@ -141,7 +150,7 @@ input[type="button"]:hover {
 }
 
 .stat {
-  font-weight: 600;
+  font-weight: 200;
 }
 
 .stat > span {
@@ -150,26 +159,6 @@ input[type="button"]:hover {
   margin-top: 0.25em;
   font-family: "Fira Code", monospace;
   font-weight: initial;
-}
-
-#round-outcome {
-  margin: 2em auto 0;
-  font-size: 125%;
-  color: var(--light);
-}
-
-#versus {
-  margin: 0.75em auto 0;
-  font-size: 125%;
-  color: var(--light);
-  font-style: italic;
-}
-
-#game-outcome {
-  margin: 3em auto;
-  font-size: 200%;
-  font-weight: 600;
-  color: var(--darker);
 }
 
 #btn-again {
