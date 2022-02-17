@@ -49,7 +49,7 @@ domVersus.style.cssText = "visibility: hidden";
 domGameOutcome.textContent = gameOutcomeText;
 
 // Set amount of times game played
-let handsToPlay = 9;
+let handsToPlay = 5;
 let saveHands = handsToPlay;
 
 // Place the number into the DOM
@@ -123,6 +123,14 @@ const playRound = (playerHand, computerHand) => {
     domRoundOutcome.style.cssText = "visibility:visible;color:var(--yellow)";
     domVersus.textContent = String(versus);
     domVersus.style.visibility = "visible";
+
+    if (computerHand === "paper") {
+      domComputerChoice.innerHTML = "<i class='em larger em-newspaper'></i>";
+    } else if (computerHand === "rock") {
+      domComputerChoice.innerHTML = "<i class='em larger em-gem'></i>";
+    } else {
+      domComputerChoice.innerHTML = "<i class='em larger em-scissors'></i>";
+    }
   } else if (
     (computerHand === "paper" && playerHand === "rock") ||
     (computerHand === "rock" && playerHand === "scissors") ||
@@ -131,9 +139,16 @@ const playRound = (playerHand, computerHand) => {
     computerScore++;
     domComputerWins.textContent = String(computerScore);
     domRoundOutcome.textContent = outcomeMessageLoss;
-    domRoundOutcome.style.cssText = "visibility:visible;color:var(--redorange)";
+    domRoundOutcome.style.cssText = "visibility:visible;color:var(--red)";
     domVersus.textContent = String(versus);
     domVersus.style.visibility = "visible";
+    if (computerHand === "paper") {
+      domComputerChoice.innerHTML = "<i class='em larger em-newspaper'></i>";
+    } else if (computerHand === "rock") {
+      domComputerChoice.innerHTML = "<i class='em larger em-gem'></i>";
+    } else {
+      domComputerChoice.innerHTML = "<i class='em larger em-scissors'></i>";
+    }
   } else {
     playerScore++;
     domPlayerWins.textContent = String(playerScore);
@@ -141,6 +156,14 @@ const playRound = (playerHand, computerHand) => {
     domRoundOutcome.style.cssText = "visibility:visible;color:var(--green)";
     domVersus.textContent = String(versus);
     domVersus.style.visibility = "visible";
+
+    if (computerHand === "paper") {
+      domComputerChoice.innerHTML = "<i class='em larger em-newspaper'></i>";
+    } else if (computerHand === "rock") {
+      domComputerChoice.innerHTML = "<i class='em larger em-gem'></i>";
+    } else {
+      domComputerChoice.innerHTML = "<i class='em larger em-scissors'></i>";
+    }
   }
   determineWinner(tie, playerScore, computerScore, handsToPlay);
 };
@@ -159,7 +182,7 @@ const determineWinner = (tie, playerScore, computerScore, handsToPlay) => {
     domBody.style.backgroundColor = "var(--green)";
     domGameOutcome.textContent = "Player wins the game!";
   } else if (handsToPlay === 0 && playerScore < computerScore) {
-    domBody.style.backgroundColor = "var(--redorange)";
+    domBody.style.backgroundColor = "var(--red)";
     domGameOutcome.textContent = "Computer wins the game!";
   } else if (handsToPlay === 0 && playerScore === computerScore) {
     domBody.style.backgroundColor = "var(--yellow)";
@@ -198,6 +221,8 @@ const playAgain = () => {
   domVersus.textContent = versusTest;
 
   domBtnPlayAgain.style.visibility = "hidden";
+
+  domComputerChoice.innerHTML = "<i class='em larger em-question'></i>";
 };
 
 domBtnPlayAgain.addEventListener("click", () => {

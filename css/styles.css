@@ -6,11 +6,14 @@
   --light: hsl(0, 0%, 100%, 0.2);
   --darker: hsl(0, 0%, 0%, 0.4);
   --dark: hsl(0, 0%, 0%, 0.2);
-  --yellow: hsl(42.4, 100%, 70.6%);
-  --green: hsl(141.5, 39.1%, 47.6%);
-  --light-green: hsl(141.5, 39.1%, 50%);
-  --dark-green: hsl(141.5, 39.1%, 20%);
-  --redorange: hsl(7.2, 89.7%, 62%);
+
+  /* https://coolors.co/palette/227c9d-17c3b2-ffcb77-fef9ef-fe6d73 */
+  --yellow: hsl(42, 100%, 70%);
+  --green: hsl(164.4, 94.5%, 43.1%);
+  --red: hsl(345.7, 84%, 60.8%);
+  --cg-blue: hsl(196.1, 64.4%, 37.5%);
+  --cg-blue-d: hsl(196, 63.8%, 18.4%);
+  --cg-blue-l: hsl(195.9, 64.2%, 55.1%);
 }
 
 * {
@@ -26,7 +29,7 @@ body {
   font-family: "Raleway", sans-serif;
   font-style: normal;
   line-height: 1;
-  background-color: hsla(216, 18.1%, 16.3%, 1);
+  background-color: hsl(216, 18.1%, 16.3%);
   user-select: none;
   text-align: center;
   font-size: 1rem;
@@ -78,17 +81,25 @@ hr.hr-large {
 input[type="button"] {
   border-style: solid;
   margin: 0 auto;
-  border-width: 1px;
+  border-width: 0;
   border-bottom-width: 4px;
   padding: 9px 15px;
   border-radius: 6px;
   cursor: pointer;
   font-size: 1.25em;
+
+  background-color: hsl(216, 18.1%, 16.3%);
+  color: var(--lighter);
+  border-bottom-color: hsl(216, 18.1%, 5.3%);
 }
 
 input[type="button"]:active {
   border-bottom-width: 2px;
   transform: translateY(2px);
+}
+
+input[type="button"]:hover {
+  background-color: hsl(216, 18.1%, 25.3%);
 }
 
 /**/
@@ -113,15 +124,8 @@ input[type="button"]:active {
   transform: scale(1.2);
 }
 
-.button-green {
-  background-color: var(--green);
-  color: var(--dark-green);
-  border-color: var(--green);
-  border-bottom-color: var(--dark-green);
-}
-
 .button-green:hover {
-  background-color: var(--light-green);
+  background-color: var(--cg-blue-l);
 }
 
 #hands {
