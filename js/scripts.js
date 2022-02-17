@@ -13,7 +13,6 @@ come back and add your link!
 */
 
 // Set all DOM elements
-
 let domBody = document.body;
 let domTotalRounds = document.querySelector("#total-rounds");
 let domRoundsPlayed = document.querySelector("#rounds-played");
@@ -33,21 +32,20 @@ let domRoundResults = document.querySelector("#results-round");
 let domGameResults = document.querySelector("#results-game");
 let domDesc = document.querySelector("#description");
 
-domGameResults.style.display = "none";
-domRoundResults.style.cssText = "display: block; visibility: hidden";
-
-// Set amount of times game played
-let handsToPlay = 5;
+// Set amount of rounds
+let roundsToPlay = 5;
 let roundsPlayed = 0;
 
 // Place the number into the DOM
-domRoundsPlayed.textContent = String(roundsPlayed);
-domTotalRounds.textContent = String(handsToPlay);
+domRoundsPlayed.textContent = roundsPlayed;
+domTotalRounds.textContent = roundsToPlay;
 
-// Initialize scores
+// Initialize scores, hands
 let computerScore = 0;
 let playerScore = 0;
-let tie = 0;
+let draws = 0;
+let computerHand;
+let playerHand;
 
 // Get computer choice
 const getComputerHand = () => {
@@ -64,137 +62,124 @@ const getComputerHand = () => {
   }
 };
 
-let computerHand = getComputerHand();
-let playerHand;
-
-domPlayerRock.addEventListener("click", () => {
-  roundsPlayed++;
-  domRoundsPlayed.textContent = String(roundsPlayed);
-  playerHand = "rock";
-  playRound(playerHand, computerHand);
-});
-
-domPlayerPaper.addEventListener("click", () => {
-  roundsPlayed++;
-  domRoundsPlayed.textContent = String(roundsPlayed);
-  playerHand = "paper";
-  playRound(playerHand, computerHand);
-});
-
-domPlayerScissors.addEventListener("click", () => {
-  roundsPlayed++;
-  domRoundsPlayed.textContent = String(roundsPlayed);
-  playerHand = "scissors";
-  playRound(playerHand, computerHand);
-});
-
 // Get player choice
 const getPlayerHand = () => {
   return playerHand;
 };
 
-// Play a round
+const updateStats = (playerChoice) => {
+  roundsPlayed++;
+  domRoundsPlayed.textContent = roundsPlayed;
+  playerHand = playerChoice;
+  playRound(playerHand, computerHand);
+};
+
+domPlayerRock.addEventListener("click", () => {
+  updateStats("rock");
+});
+
+domPlayerPaper.addEventListener("click", () => {
+  updateStats("paper");
+});
+
+domPlayerScissors.addEventListener("click", () => {
+  updateStats("scissors");
+});
+
+// Reveals the computer's hand
+const showComputerHand = (computerHand) => {
+  if (computerHand === "paper") {
+    domComputerChoice.innerHTML = "<i class='em larger em-newspaper animate-pop'></i>";
+  } else if (computerHand === "rock") {
+    domComputerChoice.innerHTML = "<i class='em larger em-gem animate-pop'></i>";
+  } else {
+    domComputerChoice.innerHTML = "<i class='em larger em-scissors animate-pop'></i>";
+  }
+};
+
+const updateStatsAfterRound = (roundWinner, message, msgColor) => {
+  roundWinner++;
+  domDraws.textContent = roundWinner;
+  domRoundOutcome.textContent = message;
+  domRoundOutcome.style.cssText = `visibility: visible; color: var(--${msgColor})`;
+  showComputerHand(computerHand);
+};
+
+// Plays a round
 const playRound = (playerHand, computerHand) => {
   playerHand = getPlayerHand();
   computerHand = getComputerHand();
-
-  // Set win/loss/tie messages
   let outcomeMessageLoss = "You lose this round!";
   let outcomeMessageWin = "You win this round!";
   let outcomeMessageTie = "Round tied!";
 
   if (computerHand === playerHand) {
-    tie++;
-    domDraws.textContent = String(tie);
+    // updateStatsAfterRound(draws, outcomeMessageTie, "yellow");
+    draws++;
+    domDraws.textContent = draws;
     domRoundOutcome.textContent = outcomeMessageTie;
     domRoundOutcome.style.cssText = "visibility: visible; color: var(--yellow)";
-
-    if (computerHand === "paper") {
-      domComputerChoice.innerHTML = "<i class='em larger em-newspaper'></i>";
-    } else if (computerHand === "rock") {
-      domComputerChoice.innerHTML = "<i class='em larger em-gem'></i>";
-    } else {
-      domComputerChoice.innerHTML = "<i class='em larger em-scissors'></i>";
-    }
+    showComputerHand(computerHand);
   } else if (
     (computerHand === "paper" && playerHand === "rock") ||
     (computerHand === "rock" && playerHand === "scissors") ||
     (computerHand === "scissors" && playerHand === "paper")
   ) {
+    // updateStatsAfterRound(computerScore, outcomeMessageLoss, "red");
     computerScore++;
-    domComputerWins.textContent = String(computerScore);
+    domComputerWins.textContent = computerScore;
     domRoundOutcome.textContent = outcomeMessageLoss;
     domRoundOutcome.style.cssText = "visibility: visible; color: var(--red)";
-
-    if (computerHand === "paper") {
-      domComputerChoice.innerHTML = "<i class='em larger em-newspaper'></i>";
-    } else if (computerHand === "rock") {
-      domComputerChoice.innerHTML = "<i class='em larger em-gem'></i>";
-    } else {
-      domComputerChoice.innerHTML = "<i class='em larger em-scissors'></i>";
-    }
+    showComputerHand(computerHand);
   } else {
+    // updateStatsAfterRound(playerScore, outcomeMessageWin, "green");
     playerScore++;
-    domPlayerWins.textContent = String(playerScore);
+    domPlayerWins.textContent = playerScore;
     domRoundOutcome.textContent = outcomeMessageWin;
     domRoundOutcome.style.cssText = "visibility: visible; color: var(--green)";
-
-    if (computerHand === "paper") {
-      domComputerChoice.innerHTML = "<i class='em larger em-newspaper'></i>";
-    } else if (computerHand === "rock") {
-      domComputerChoice.innerHTML = "<i class='em larger em-gem'></i>";
-    } else {
-      domComputerChoice.innerHTML = "<i class='em larger em-scissors'></i>";
-    }
+    showComputerHand(computerHand);
   }
-  determineWinner(tie, playerScore, computerScore, handsToPlay);
+  determineWinner(playerScore, computerScore);
 };
 
-const determineWinner = (tie, playerScore, computerScore, handsToPlay) => {
+const showGameResults = (gameWinner, bgColor) => {
+  domHands.style.display = "none";
+  domDesc.style.display = "none";
+  domRoundResults.style.display = "none";
+  domGameResults.style.display = "block";
+  domBtnPlayAgain.style.visibility = "visible";
+  domGameOutcome.textContent = `${gameWinner} wins the game!`;
+  domBody.style.backgroundColor = `var(--${bgColor})`;
+};
+
+const determineWinner = (playerScore, computerScore) => {
   if (playerScore === 5) {
-    domBody.style.backgroundColor = "var(--green)";
-    domGameOutcome.textContent = "Player wins the game!";
-    domHands.style.display = "none";
-    domDesc.style.display = "none";
-    domGameResults.style.display = "block";
-    domBtnPlayAgain.style.visibility = "visible";
-    domRoundResults.style.display = "none";
+    showGameResults("Player", "green");
   } else if (computerScore === 5) {
-    domBody.style.backgroundColor = "var(--red)";
-    domGameOutcome.textContent = "Computer wins the game!";
-    domHands.style.display = "none";
-    domDesc.style.display = "none";
-    domGameResults.style.display = "block";
-    domBtnPlayAgain.style.visibility = "visible";
-    domRoundResults.style.display = "none";
+    showGameResults("Computer", "red");
   }
 };
 
-// Reset game (and scores) after p seconds
+// Reset game (and scores)
 const playAgain = () => {
   // Reset scores
   computerScore = 0;
   playerScore = 0;
-  tie = 0;
+  draws = 0;
   roundsPlayed = 0;
 
-  domRoundsPlayed.textContent = String(roundsPlayed);
-  domPlayerWins.textContent = String(playerScore);
-  domComputerWins.textContent = String(computerScore);
-  domDraws.textContent = String(tie);
-
+  // Reset all DOM elements
+  domRoundsPlayed.textContent = roundsPlayed;
+  domPlayerWins.textContent = playerScore;
+  domComputerWins.textContent = computerScore;
+  domDraws.textContent = draws;
   domBody.style.backgroundColor = "hsla(216, 18.1%, 16.3%, 1)";
-
   domDesc.style.display = "block";
   domHands.style.display = "flex";
   domGameResults.style.display = "none";
-
   domRoundResults.style.cssText = "display: block; visibility: hidden";
-
   domRoundOutcome.style.visibility = "hidden";
-
   domBtnPlayAgain.style.visibility = "hidden";
-
   domComputerChoice.innerHTML = "<i class='em larger em-question'></i>";
 };
 
