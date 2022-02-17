@@ -16,7 +16,7 @@ come back and add your link!
 
 let domBody = document.body;
 let domTotalRounds = document.querySelector("#total-rounds");
-let domRoundsToPlay = document.querySelector("#rounds-left");
+let domRoundsPlayed = document.querySelector("#rounds-played");
 let domPlayerWins = document.querySelector("#player-wins");
 let domComputerWins = document.querySelector("#computer-wins");
 let domDraws = document.querySelector("#draws");
@@ -50,10 +50,11 @@ domGameOutcome.textContent = gameOutcomeText;
 
 // Set amount of times game played
 let handsToPlay = 5;
+let roundsPlayed = 0;
 let saveHands = handsToPlay;
 
 // Place the number into the DOM
-domRoundsToPlay.textContent = String(handsToPlay);
+domRoundsPlayed.textContent = String(roundsPlayed);
 domTotalRounds.textContent = String(handsToPlay);
 
 // Initialize scores
@@ -80,22 +81,22 @@ let computerHand = getComputerHand();
 let playerHand;
 
 domPlayerRock.addEventListener("click", () => {
-  handsToPlay--;
-  domRoundsToPlay.textContent = String(handsToPlay);
+  roundsPlayed++;
+  domRoundsPlayed.textContent = String(roundsPlayed);
   playerHand = "rock";
   playRound(playerHand, computerHand);
 });
 
 domPlayerPaper.addEventListener("click", () => {
-  handsToPlay--;
-  domRoundsToPlay.textContent = String(handsToPlay);
+  roundsPlayed++;
+  domRoundsPlayed.textContent = String(roundsPlayed);
   playerHand = "paper";
   playRound(playerHand, computerHand);
 });
 
 domPlayerScissors.addEventListener("click", () => {
-  handsToPlay--;
-  domRoundsToPlay.textContent = String(handsToPlay);
+  roundsPlayed++;
+  domRoundsPlayed.textContent = String(roundsPlayed);
   playerHand = "scissors";
   playRound(playerHand, computerHand);
 });
@@ -142,6 +143,7 @@ const playRound = (playerHand, computerHand) => {
     domRoundOutcome.style.cssText = "visibility:visible;color:var(--red)";
     domVersus.textContent = String(versus);
     domVersus.style.visibility = "visible";
+
     if (computerHand === "paper") {
       domComputerChoice.innerHTML = "<i class='em larger em-newspaper'></i>";
     } else if (computerHand === "rock") {
@@ -169,25 +171,24 @@ const playRound = (playerHand, computerHand) => {
 };
 
 const determineWinner = (tie, playerScore, computerScore, handsToPlay) => {
-  if (tie + playerScore + computerScore === saveHands) {
+  if (playerScore === 5) {
+    domBody.style.backgroundColor = "var(--green)";
+    domGameOutcome.textContent = "Player wins the game!";
     domHands.style.display = "none";
     domDesc.style.display = "none";
     domGameResults.style.display = "block";
     domBtnPlayAgain.style.visibility = "visible";
-
     domRoundResults.style.cssText = "display: none;";
     domVersus.style.cssText = "display: none;";
-  }
-  if (handsToPlay === 0 && playerScore > computerScore) {
-    domBody.style.backgroundColor = "var(--green)";
-    domGameOutcome.textContent = "Player wins the game!";
-  } else if (handsToPlay === 0 && playerScore < computerScore) {
+  } else if (computerScore === 5) {
     domBody.style.backgroundColor = "var(--red)";
     domGameOutcome.textContent = "Computer wins the game!";
-  } else if (handsToPlay === 0 && playerScore === computerScore) {
-    domBody.style.backgroundColor = "var(--yellow)";
-    domGameOutcome.textContent = "Game results in draw!";
-    domGameOutcome.style.color = "var(--darker)";
+    domHands.style.display = "none";
+    domDesc.style.display = "none";
+    domGameResults.style.display = "block";
+    domBtnPlayAgain.style.visibility = "visible";
+    domRoundResults.style.cssText = "display: none;";
+    domVersus.style.cssText = "display: none;";
   }
 };
 
@@ -197,10 +198,11 @@ const playAgain = () => {
   computerScore = 0;
   playerScore = 0;
   tie = 0;
+  roundsPlayed = 0;
   handsToPlay = saveHands;
 
   domPlayerWins.textContent = String(playerScore);
-  domRoundsToPlay.textContent = String(saveHands);
+  domRoundsPlayed.textContent = String(saveHands);
   domComputerWins.textContent = String(computerScore);
   domDraws.textContent = String(tie);
 
