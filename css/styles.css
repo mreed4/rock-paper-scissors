@@ -136,7 +136,6 @@ input[type="button"]:hover {
 }
 
 #results-round {
-  display: block;
   visibility: hidden;
 }
 

@@ -14,38 +14,45 @@ come back and add your link!
 
 // Set all DOM elements
 let domBody = document.body;
-let domTotalRounds = document.querySelector("#total-rounds");
+let domScoreToWin = document.querySelector("#score-to-win");
+let domGameOutcome = document.querySelector("#game-outcome");
+let domRoundOutcome = document.querySelector("#round-outcome");
+let domBtnPlayAgain = document.querySelector("#btn-again");
+
+// Sections
+let domDesc = document.querySelector("#description");
+let domHands = document.querySelector("#hands");
+let domRoundResults = document.querySelector("#results-round"); // CSS - visibility: hidden;
+let domGameResults = document.querySelector("#results-game"); // CSS - display: none;
+
+// Computer choice div
+let domComputerChoice = document.querySelector("#computer-choice");
+
+// Each player choices
+let domPlayerRock = document.querySelector(".em-gem");
+let domPlayerPaper = document.querySelector(".em-newspaper");
+let domPlayerScissors = document.querySelector(".em-scissors");
+
+// Stats
 let domRoundsPlayed = document.querySelector("#rounds-played");
 let domPlayerWins = document.querySelector("#player-wins");
 let domComputerWins = document.querySelector("#computer-wins");
 let domDraws = document.querySelector("#draws");
-let domRoundOutcome = document.querySelector("#round-outcome");
-let domPlayerRock = document.querySelector(".em-gem");
-let domPlayerPaper = document.querySelector(".em-newspaper");
-let domPlayerScissors = document.querySelector(".em-scissors");
-let domGameOutcome = document.querySelector("#game-outcome");
-let domPlayerChoices = document.querySelector("#player-choices");
-let domComputerChoice = document.querySelector("#computer-choice");
-let domBtnPlayAgain = document.querySelector("#btn-again");
-let domHands = document.querySelector("#hands");
-let domRoundResults = document.querySelector("#results-round");
-let domGameResults = document.querySelector("#results-game");
-let domDesc = document.querySelector("#description");
 
-// Set rounds
+// Initialize rounds
 let scoreToWin = 5;
 let roundsPlayed = 0;
 
-// Place the number into the DOM
+// Place the numbers into the DOM
 domRoundsPlayed.textContent = roundsPlayed;
-domTotalRounds.textContent = scoreToWin;
+domScoreToWin.textContent = scoreToWin;
 
 // Initialize scores, hands
 let computerScore = 0;
 let playerScore = 0;
 let draws = 0;
-let computerHand;
-let playerHand;
+let computerHand; // See getComputerHand()
+let playerHand; // See event listeners farther below
 
 // Get computer choice
 const getComputerHand = () => {
@@ -62,19 +69,20 @@ const getComputerHand = () => {
   }
 };
 
-// Get player choice
+// Get player choice - See event listeners farther below
 const getPlayerHand = () => {
   return playerHand;
 };
 
+// Updates rounds played in DOM, pits player against computer
 const updateStats = (playerChoice) => {
   roundsPlayed++;
   domRoundsPlayed.textContent = roundsPlayed;
   playerHand = playerChoice;
-  playRound(playerHand, computerHand);
+  playRound(playerHand, computerHand); // Compare hands
 };
 
-// Reveals the computer's hand
+// Reveals the computer's hand in DOM
 const showComputerHand = (computerHand) => {
   if (computerHand === "paper") {
     domComputerChoice.innerHTML = "<i class='em larger em-newspaper animate-pop'></i>";
@@ -85,6 +93,8 @@ const showComputerHand = (computerHand) => {
   }
 };
 
+// Updates states in DOM after a round, displays winner of round
+// 2/17/22 - Currently unused, not working
 const updateStatsAfterRound = (roundWinner, message, msgColor) => {
   roundWinner++;
   domDraws.textContent = roundWinner;
@@ -97,6 +107,7 @@ const updateStatsAfterRound = (roundWinner, message, msgColor) => {
 const playRound = (playerHand, computerHand) => {
   playerHand = getPlayerHand();
   computerHand = getComputerHand();
+
   let outcomeMessageLoss = "You lose this round!";
   let outcomeMessageWin = "You win this round!";
   let outcomeMessageTie = "Round tied!";
@@ -130,6 +141,7 @@ const playRound = (playerHand, computerHand) => {
   determineWinner(playerScore, computerScore);
 };
 
+// Shows winner of overall game in DOM
 const showGameResults = (gameWinner, bgColor) => {
   domHands.style.display = "none";
   domDesc.style.display = "none";
@@ -140,6 +152,7 @@ const showGameResults = (gameWinner, bgColor) => {
   domBody.style.backgroundColor = `var(--${bgColor})`;
 };
 
+// Logic to determine game winner
 const determineWinner = (playerScore, computerScore) => {
   if (playerScore === scoreToWin) {
     showGameResults("Player", "green");
@@ -171,6 +184,7 @@ const playAgain = () => {
   domComputerChoice.innerHTML = "<i class='em larger em-question'></i>";
 };
 
+// Event listeners
 domPlayerRock.addEventListener("click", () => {
   updateStats("rock");
 });
