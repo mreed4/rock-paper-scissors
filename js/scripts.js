@@ -32,13 +32,13 @@ let domRoundResults = document.querySelector("#results-round");
 let domGameResults = document.querySelector("#results-game");
 let domDesc = document.querySelector("#description");
 
-// Set amount of rounds
-let roundsToPlay = 5;
+// Set rounds
+let scoreToWin = 5;
 let roundsPlayed = 0;
 
 // Place the number into the DOM
 domRoundsPlayed.textContent = roundsPlayed;
-domTotalRounds.textContent = roundsToPlay;
+domTotalRounds.textContent = scoreToWin;
 
 // Initialize scores, hands
 let computerScore = 0;
@@ -73,18 +73,6 @@ const updateStats = (playerChoice) => {
   playerHand = playerChoice;
   playRound(playerHand, computerHand);
 };
-
-domPlayerRock.addEventListener("click", () => {
-  updateStats("rock");
-});
-
-domPlayerPaper.addEventListener("click", () => {
-  updateStats("paper");
-});
-
-domPlayerScissors.addEventListener("click", () => {
-  updateStats("scissors");
-});
 
 // Reveals the computer's hand
 const showComputerHand = (computerHand) => {
@@ -153,9 +141,9 @@ const showGameResults = (gameWinner, bgColor) => {
 };
 
 const determineWinner = (playerScore, computerScore) => {
-  if (playerScore === 5) {
+  if (playerScore === scoreToWin) {
     showGameResults("Player", "green");
-  } else if (computerScore === 5) {
+  } else if (computerScore === scoreToWin) {
     showGameResults("Computer", "red");
   }
 };
@@ -182,6 +170,18 @@ const playAgain = () => {
   domBtnPlayAgain.style.visibility = "hidden";
   domComputerChoice.innerHTML = "<i class='em larger em-question'></i>";
 };
+
+domPlayerRock.addEventListener("click", () => {
+  updateStats("rock");
+});
+
+domPlayerPaper.addEventListener("click", () => {
+  updateStats("paper");
+});
+
+domPlayerScissors.addEventListener("click", () => {
+  updateStats("scissors");
+});
 
 domBtnPlayAgain.addEventListener("click", () => {
   playAgain();
