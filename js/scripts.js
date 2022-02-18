@@ -75,6 +75,7 @@ const getPlayerHand = () => {
 };
 
 // Updates rounds played in DOM, pits player against computer
+// See event listeners farther below
 const updateStats = (playerChoice) => {
   roundsPlayed++;
   domRoundsPlayed.textContent = roundsPlayed;
@@ -93,7 +94,7 @@ const showComputerHand = (computerHand) => {
   }
 };
 
-// Updates states in DOM after a round, displays winner of round
+// Updates stats in DOM after a round, displays winner of round
 // 2/17/22 - Currently unused, not working
 const updateStatsAfterRound = (roundWinner, message, msgColor) => {
   roundWinner++;
